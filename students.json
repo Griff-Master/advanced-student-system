@@ -1,0 +1,62 @@
+{
+  "1": {
+    "id": 1,
+    "name": "Griffins  Kyei",
+    "email": "griffins@gmail.com",
+    "age": 20,
+    "gpa": 4.0,
+    "major": "BSC BUSINESS INFORMATION TECHNOLOGY",
+    "enrollmentDate": "2025-08-25",
+    "status": "GRADUATED"
+  },
+  "2": {
+    "id": 2,
+    "name": "Stephen Odero",
+    "email": "stephen@gmail.com",
+    "age": 20,
+    "gpa": 3.5,
+    "major": "BSC INFORMATION TECHNOLOGY",
+    "enrollmentDate": "2025-08-25",
+    "status": "ACTIVE"
+  },
+  "3": {
+    "id": 3,
+    "name": "Dandavis Simiyu",
+    "email": "simiyu@gmail.com",
+    "age": 22,
+    "gpa": 3.8,
+    "major": "BSC BUSINESS INFORMATION TECHNOLOGY",
+    "enrollmentDate": "2025-08-25",
+    "status": "GRADUATED"
+  },
+  "4": {
+    "id": 4,
+    "name": "James Wainyari",
+    "email": "james@gmail.com",
+    "age": 20,
+    "gpa": 3.9,
+    "major": "BSC INFORMATION TECHNOLOGY",
+    "enrollmentDate": "2026-08-25",
+    "status": "ACTIVE"
+  },
+  "5": {
+    "id": 5,
+    "name": "Mary Jane",
+    "email": "mary@gmail.com",
+    "age": 17,
+    "gpa": 3.4,
+    "major": "BSC INDUSTRIAL CHEMISTRY",
+    "enrollmentDate": "2026-09-27",
+    "status": "ACTIVE"
+  },
+  "6": {
+    "id": 6,
+    "name": "Orengo Omolo",
+    "email": "orengo@gmail.com",
+    "age": 22,
+    "gpa": 2.5,
+    "major": "BSC MECHATRONICS",
+    "enrollmentDate": "2022-04-09",
+    "status": "SUSPENDED"
+  }
+}
