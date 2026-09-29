@@ -145,11 +145,13 @@ student.setGpa(newGpa);
         if(query == null || query.isBlank()){
             throw  new InvalidStudentException("Search query cannot be null or blank.");
         }
-        String search = query.trim().toLowerCase();
+        String search = query.trim().toLowerCase()
+                .replaceAll("\\s+", " ");
    return repository.findAll()
                 .stream()
                 .filter(student ->
                         student.getName().toLowerCase()
+                                .replaceAll("\\s+", " ")
                                 .contains(search))
                 .toList();
     }
@@ -159,11 +161,13 @@ student.setGpa(newGpa);
                    "Major cannot be null or blank."
            );
         }
-        String searchMajor = major.trim();
+        String searchMajor = major.trim()
+                .replaceAll("\\s+", " ");
         return repository.findAll()
                 .stream()
                 .filter(student ->
                         student.getMajor()
+                                .replaceAll("\\s+", " ")
                                 .equalsIgnoreCase(searchMajor))
                 .toList();
 

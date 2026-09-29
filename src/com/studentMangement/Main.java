@@ -47,7 +47,8 @@ public class Main {
                     case 12 -> sortStudents(console, service);
                     case 13 -> {
                         console.showSuccess(
-                                "If made any changes they have already been persisted."
+                                "If made any changes they " +
+                                        "have already been persisted."
                         );
                         console.showMessage(
                                 "Exiting Student Management System..."

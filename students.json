@@ -58,5 +58,25 @@
     "major": "BSC MECHATRONICS",
     "enrollmentDate": "2022-04-09",
     "status": "SUSPENDED"
+  },
+  "7": {
+    "id": 7,
+    "name": "Derrick Mokaya",
+    "email": "derrick@gmail.com",
+    "age": 19,
+    "gpa": 3.7,
+    "major": "BSC DATA SCIENCE",
+    "enrollmentDate": "2026-08-19",
+    "status": "ACTIVE"
+  },
+  "8": {
+    "id": 8,
+    "name": "Hanningtone Oduor",
+    "email": "hanningtone@gmail.com",
+    "age": 23,
+    "gpa": 3.6,
+    "major": "BSC COMPUTER SCIENCE",
+    "enrollmentDate": "2023-07-31",
+    "status": "ACTIVE"
   }
 }
