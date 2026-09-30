@@ -14,7 +14,7 @@ import java.util.Map;
 
 
 public class Main {
-    public void main(String[] args) {
+    public static void main(String[] args) {
         Repository<Student, Integer> repository =
                 new JsonStudentRepository();
         StudentService service =
@@ -405,6 +405,7 @@ private  static void sortStudents(
                 case 1 -> {
                     List<Student>students =
                             service.sortStudents(1);
+                    console.showMessage("");
                     console.showMessage(
                             "Students sorted by name:"
                     );
@@ -413,6 +414,7 @@ private  static void sortStudents(
                 case 2 -> {
                     List<Student>students =
                             service.sortStudents(2);
+                    console.showMessage("");
                     console.showMessage(
                             "Students sorted by enrollment date:"
                     );
@@ -421,6 +423,7 @@ private  static void sortStudents(
                 case 3 -> {
                     List<Student>students =
                             service.sortStudents(3);
+                    console.showMessage("");
                     console.showMessage(
                             "Students sorted by major:"
                     );
@@ -429,6 +432,7 @@ private  static void sortStudents(
                 case 4 -> {
                     List<Student>students =
                             service.sortStudents(4);
+                    console.showMessage("");
                     console.showMessage(
                             "Students sorted by status:"
                     );
