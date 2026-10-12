@@ -17,12 +17,12 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class StudentServiceTest {
-    private InMemoryStudentRepository repository;
-    private StudentService service;
+    private  InMemoryStudentRepository repository;
+    private  StudentService service;
 
     @BeforeEach
     void setUp() {
-        repository = new InMemoryStudentRepository();
+       repository = new InMemoryStudentRepository();
         service = new StudentService(repository);
     }
 
@@ -204,7 +204,7 @@ public class StudentServiceTest {
         );
         service.registerStudent(student1);
         service.registerStudent(student2);
-        var results = service.searchByName("griffins");
+        var results = service.searchByName("griffins      jack");
         assertEquals(1, results.size());
         assertEquals("Griffins Jackson", results.getFirst().getName());
     }

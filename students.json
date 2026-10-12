@@ -45,8 +45,8 @@
     "email": "mary@gmail.com",
     "age": 17,
     "gpa": 3.4,
-    "major": "BSC INDUSTRIAL CHEMISTRY",
-    "enrollmentDate": "2026-09-27",
+    "major": "SOFTWARE ENGINEERING",
+    "enrollmentDate": "2026-10-07",
     "status": "ACTIVE"
   },
   "6": {
@@ -78,5 +78,25 @@
     "major": "BSC COMPUTER SCIENCE",
     "enrollmentDate": "2023-07-31",
     "status": "ACTIVE"
+  },
+  "9": {
+    "id": 9,
+    "name": "Daniel Kipkoech",
+    "email": "kipkoech.daniel25@students.dkut.ac.ke",
+    "age": 20,
+    "gpa": 3.5,
+    "major": "SOFTWARE ENGINEERING",
+    "enrollmentDate": "2024-05-26",
+    "status": "ACTIVE"
+  },
+  "10": {
+    "id": 10,
+    "name": "Frank Onyango",
+    "email": "frank@gmail.com",
+    "age": 34,
+    "gpa": 3.6,
+    "major": "MEDICINE",
+    "enrollmentDate": "2015-09-30",
+    "status": "GRADUATED"
   }
 }

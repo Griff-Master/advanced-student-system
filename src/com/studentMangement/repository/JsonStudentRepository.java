@@ -137,14 +137,20 @@ public class JsonStudentRepository implements Repository<Student,Integer> {
                     "Student collection cannot be null."
             );
         }
-        List<Student>saved = new ArrayList<>();
+        if(studentsToSave.isEmpty()){
+            throw new InvalidStudentException(
+                    "Student collection cannot be empty."
+            );
+        }
         for (Student student : studentsToSave) {
             if (student == null) {
                 throw new InvalidStudentException(
                         "Student collection cannot contain a null entry."
                 );
             }
+
         }
+        List<Student>saved = new ArrayList<>();
         for(Student student: studentsToSave) {
             saveToMemory(student);
 saved.add(student);

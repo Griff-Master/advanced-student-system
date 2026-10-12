@@ -24,6 +24,11 @@ private final Map<Integer,Student>students = new HashMap<>();
                     "Students collection cannot be null."
             );
         }
+        if(students.isEmpty()){
+            throw new InvalidStudentException(
+                    "Students collection cannot be empty."
+            );
+        }
         List<Student>saved = new ArrayList<>();
         for(Student student : students){
             if(student == null){

@@ -27,8 +27,7 @@ public class ConsoleUtils {
     }
     public int readInt(String prompt){
         while(true){
-            System.out.println(prompt);
-            String input = scanner.nextLine().trim();
+            String input =readString(prompt);
             try{
                 return Integer.parseInt(input);
             }catch(NumberFormatException e){
@@ -87,8 +86,7 @@ public class ConsoleUtils {
     }
     public LocalDate readDate(String prompt){
         while(true){
-            System.out.println(prompt);
-            String input = scanner.nextLine().trim();
+            String input = readString(prompt);
             try{
                 return LocalDate.parse(input);
             }catch (DateTimeParseException e){
@@ -100,8 +98,8 @@ public class ConsoleUtils {
     }
     public StudentStatus readStatus(String prompt){
         while(true){
-            System.out.println(prompt);
-            String input =scanner.nextLine().trim();
+
+            String input =readString(prompt);
             try{
                 return StudentStatus.valueOf(input.toUpperCase());
             }catch (IllegalArgumentException e){

@@ -73,9 +73,13 @@ public class Student implements Comparable<Student> {
             );
         }
         String trimmedName = name.trim();
-        if(trimmedName.isBlank()
-                || trimmedName.length()<2
-                || trimmedName.length()>100){
+        if(trimmedName.isEmpty()){
+            throw new InvalidStudentException(
+                    "Name is required."
+            );
+        }
+                 if(trimmedName.length()<2
+                    || trimmedName.length()>100){
             throw new InvalidStudentException(
                     "Name must be between 2 and 100 characters."
             );
@@ -90,7 +94,7 @@ public class Student implements Comparable<Student> {
             );
         }
         String trimmedEmail = email.trim();
-        if(trimmedEmail.isBlank()){
+        if(trimmedEmail.isEmpty()){
             throw new InvalidStudentException(
                     "Email is required."
             );
@@ -120,9 +124,13 @@ public class Student implements Comparable<Student> {
             );
         }
         String trimmedMajor = major.trim();
-        if(trimmedMajor.isBlank()
-        ||trimmedMajor.length() <2
-        || trimmedMajor.length() >100){
+        if(trimmedMajor.isEmpty()){
+            throw new InvalidStudentException(
+                    "Major is required."
+            );
+        }
+        if(trimmedMajor.length() <2
+           || trimmedMajor.length() >100){
             throw new InvalidStudentException(
                     "Major must be between 2 and 100 characters."
             );
@@ -136,6 +144,7 @@ public class Student implements Comparable<Student> {
                     "EnrollmentDate is required."
             );
         }
+
         if(enrollmentDate.isAfter(LocalDate.now())){
             throw new InvalidStudentException(
                     "EnrollmentDate cannot be in the future."

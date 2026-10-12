@@ -223,7 +223,7 @@ void shouldCompareWithStudentByIdWhenGpaAndNameAreEqual(){
             LocalDate.of(2026,8,25),
             StudentStatus.ACTIVE
     );
-    assertTrue(student1.compareTo(student2)<1);
+    assertTrue(student1.compareTo(student2)<0);
 }
 @Test
     void shouldReturnZeroWhenStudentAreEqual(){

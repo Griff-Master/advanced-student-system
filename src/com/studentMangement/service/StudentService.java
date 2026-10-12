@@ -18,6 +18,11 @@ public class StudentService {
 
     }
     public Student registerStudent(Student student){
+        if(student == null){
+            throw new InvalidStudentException(
+                    "Student cannot be null."
+            );
+        }
         if(repository.existsById(student.getId())){
             throw new DuplicateStudentIdException(
                     "Student ID already exists."
@@ -29,7 +34,9 @@ public class StudentService {
                         existingStudent.getEmail()
                                 .equalsIgnoreCase(student.getEmail()));
         if(emailExists){
-            throw new DuplicateEmailException("Student email already exists.");
+            throw new DuplicateEmailException(
+                    "Student email already exists."
+            );
         }
         return repository.save(student);
     }
@@ -46,7 +53,6 @@ public class StudentService {
         }
         Set<Integer>ids = new HashSet<>();
         Set<String>emails = new HashSet<>();
-        List<Student>existingStudents = repository.findAll();
         for(Student student : students){
             if(student == null){
                 throw new InvalidStudentException(
@@ -67,6 +73,7 @@ public class StudentService {
                );
             }
         }
+
         for(Student student : students){
             if(repository.existsById(student.getId())){
                 throw new DuplicateStudentIdException(
@@ -74,7 +81,8 @@ public class StudentService {
                         + student.getId()
                 );
             }
-            boolean emailExists = existingStudents.stream()
+            boolean emailExists = repository.findAll()
+                    .stream()
                     .anyMatch(existing ->
                             existing.getEmail()
                                     .equalsIgnoreCase(
@@ -106,7 +114,7 @@ student.setGpa(newGpa);
             return student;
         }
         switch(currentStatus){
-            case ACTIVE:
+            case ACTIVE ->{
                 if(status != StudentStatus.GRADUATED
                 && status != StudentStatus.SUSPENDED
                         && status != StudentStatus.DROPPED){
@@ -114,20 +122,21 @@ student.setGpa(newGpa);
                             "Active cannot change to " + status
                     );
                 }
-                break;
-            case SUSPENDED:
-                if(status != StudentStatus.ACTIVE
-                && status != StudentStatus.DROPPED){
+                }
+            case SUSPENDED -> {
+                if (status != StudentStatus.ACTIVE
+                        && status != StudentStatus.DROPPED) {
                     throw new InvalidStatusTransitionException(
                             "Suspended cannot change to " + status
                     );
                 }
-                break;
-            case  GRADUATED:
-            case DROPPED:
+
+            }
+            case  GRADUATED, DROPPED ->
                 throw new InvalidStatusTransitionException(
                         currentStatus + " is a terminal status."
                 );
+
         }
         student.setStatus(status);
         return repository.save(student);
@@ -142,8 +151,15 @@ student.setGpa(newGpa);
                         new StudentNotFoundException("Student of ID " + id + " not found."));
     }
     public List<Student> searchByName(String query){
-        if(query == null || query.isBlank()){
-            throw  new InvalidStudentException("Search query cannot be null or blank.");
+        if(query == null ){
+            throw  new InvalidStudentException(
+                    "Search query cannot be null"
+            );
+        }
+        if(query.isBlank()){
+            throw new InvalidStudentException(
+                    "Search query cannot be blank."
+            );
         }
         String search = query.trim().toLowerCase()
                 .replaceAll("\\s+", " ");
@@ -156,10 +172,15 @@ student.setGpa(newGpa);
                 .toList();
     }
     public List<Student>findByMajor(String major){
-        if(major == null || major.isBlank()){
+        if(major == null ){
            throw new InvalidStudentException(
-                   "Major cannot be null or blank."
+                   "Major cannot be null."
            );
+        }
+        if(major.isBlank()){
+            throw new InvalidStudentException(
+                    "Major cannot be blank."
+            );
         }
         String searchMajor = major.trim()
                 .replaceAll("\\s+", " ");
@@ -237,4 +258,12 @@ student.setGpa(newGpa);
                 .sorted(comparator)
                 .toList();
     }
+    public long countStudents(){
+        return repository.count();
+    }
+    public void deleteById(int id){
+        findById(id);
+        repository.deleteById(id);
+    }
+
 }

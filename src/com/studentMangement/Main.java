@@ -21,15 +21,14 @@ public class Main {
                 new StudentService(repository);
         ConsoleUtils console =
                 new ConsoleUtils();
-        boolean running = true;
 
+        boolean running = true;
         console.showMessage("==================================");
         console.showMessage("   STUDENT MANAGEMENT SYSTEM");
         console.showMessage("==================================");
-
         while (running) {
-            displayMainMenu();
-            int choice = console.readMenuChoice(1, 13);
+            displayMainMenu(console);
+            int choice = console.readMenuChoice(1, 14);
             try {
                 switch (choice) {
                     case 1 -> addingSingleStudent(console, service);
@@ -45,7 +44,8 @@ public class Main {
                     case 10 -> showTopStudents(console, service);
                     case 11 -> showSummaryByStatus(console, service);
                     case 12 -> sortStudents(console, service);
-                    case 13 -> {
+                    case 13 -> deleteStudent(console, service);
+                    case 14 -> {
                         console.showSuccess(
                                 "If made any changes they " +
                                         "have already been persisted."
@@ -74,12 +74,34 @@ public class Main {
                         "An unexpected error occurred: "
                                 + e.getMessage()
                 );
+
             }
             if (running) {
                 console.pause();
             }
         }
 console.close();
+    }
+    // --------------------------------------------------------------------------------------
+    //                                       MAIN MENU
+    // --------------------------------------------------------------------------------------
+    private static void displayMainMenu(ConsoleUtils console) {
+        console.showMessage("");
+        console.showMessage("--------------- MENU ----------------");
+        console.showMessage("1. Add a single student");
+        console.showMessage("2. Add multiple students in bulk");
+        console.showMessage("3. View all students");
+        console.showMessage("4. Find a student by ID");
+        console.showMessage("5. Search students by name");
+        console.showMessage("6. View students by major");
+        console.showMessage("7. Update a student's GPA");
+        console.showMessage("8. Change a student's status");
+        console.showMessage("9. Graduate a student");
+        console.showMessage("10. Show top students by GPA");
+        console.showMessage("11. Show summary statistics by status");
+        console.showMessage("12. Sort students"); console.showMessage("13. Delete student by ID");
+        console.showMessage("14. Save and exit");
+        console.showMessage("-------------------------------------");
     }
     private static  Student readStudent(
             ConsoleUtils console){
@@ -126,27 +148,6 @@ console.close();
                 enrollmentDate,
                 status
         );
-    }
-   // --------------------------------------------------------------------------------------
-   //                                       MAIN MENU
-   // --------------------------------------------------------------------------------------
-    private static void displayMainMenu() {
-        System.out.println();
-        System.out.println("--------------- MENU ----------------");
-        System.out.println("1. Add a single student");
-        System.out.println("2. Add multiple students in bulk");
-        System.out.println("3. View all students");
-        System.out.println("4. Find a student by ID");
-        System.out.println("5. Search students by name");
-        System.out.println("6. View students by major");
-        System.out.println("7. Update a student's GPA");
-        System.out.println("8. Change a student's status");
-        System.out.println("9. Graduate a student");
-        System.out.println("10. Show top students by GPA");
-        System.out.println("11. Show summary statistics by status");
-        System.out.println("12. Sort students");
-        System.out.println("13. Save and exit");
-        System.out.println("-------------------------------------");
     }
 
     // -----------------------------------------------------------------------------
@@ -210,6 +211,7 @@ console.close();
                 );
         List<Student>students =
                 service.findAll(page,pageSize);
+
         if(students.isEmpty()){
             console.showMessage(
                     "No students found on this page"
@@ -367,7 +369,9 @@ console.close();
               StudentService service){
         Map<StudentStatus,Long> summary =
                 service.countByStatus();
+        long totalStudents = service.countStudents();
         console.showMessage("");
+        console.showMessage("Total students: " + totalStudents);
         console.showMessage("------STUDENT STATUS SUMMARY-----");
         for(StudentStatus status : StudentStatus.values()){
             long count =
@@ -383,22 +387,22 @@ console.close();
       // -----------------------------------------------------------
       //                     12. SORTING VIA COMPARATOR
       // -----------------------------------------------------------
-    private static void displaySortMenu() {
-        System.out.println();
-        System.out.println("--------- SORT STUDENTS ---------");
-        System.out.println("1. Sort by name");
-        System.out.println("2. Sort by enrollment date");
-        System.out.println("3. Sort by major");
-        System.out.println("4. Sort by status");
-        System.out.println("5. Return to main menu");
-        System.out.println("---------------------------------");
+    private static void displaySortMenu(ConsoleUtils console) {
+        console.showMessage("");
+        console.showMessage("--------- SORT STUDENTS ---------");
+        console.showMessage("1. Sort by name");
+        console.showMessage("2. Sort by enrollment date");
+        console.showMessage("3. Sort by major");
+        console.showMessage("4. Sort by status");
+        console.showMessage("5. Return to main menu");
+        console.showMessage("---------------------------------");
     }
-private  static void sortStudents(
+private static void sortStudents(
         ConsoleUtils console,
         StudentService service){
         boolean sorting = true;
         while (sorting){
-            displaySortMenu();
+            displaySortMenu(console);
             int choice =
                     console.readMenuChoice(1,5);
             switch (choice){
@@ -444,5 +448,14 @@ private  static void sortStudents(
                 console.pause();
             }
         }
+}
+// -------------------------------------------------------------------------
+                  // 13. DELETING STUDENT
+// -------------------------------------------------------------------------
+private static void deleteStudent(ConsoleUtils console,
+                                  StudentService service){
+       int id = console.readPositiveInt("Enter student's ID: ");
+        service.deleteById(id);
+        console.showSuccess("Student successfully deleted.");
 }
     }
