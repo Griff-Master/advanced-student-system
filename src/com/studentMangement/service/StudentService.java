@@ -262,8 +262,12 @@ student.setGpa(newGpa);
         return repository.count();
     }
     public void deleteById(int id){
-        findById(id);
-        repository.deleteById(id);
+      boolean deleted =  repository.deleteById(id);
+      if(!deleted){
+          throw new StudentNotFoundException(
+                  "Student of ID " + id + " not found."
+          );
+      }
     }
 
 }
