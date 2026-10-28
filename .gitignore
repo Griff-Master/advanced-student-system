@@ -23,6 +23,22 @@ bin/
 /nbdist/
 /.nb-gradle/
 
+# Environment variables and secrets
+
+.env
+.env.*
+!.env.example
+
+# Local configuration containing sensitive information
+
+application-local.properties
+
+# Temporary and backup files
+
+*.tmp
+*.bak
+
+
 ### VS Code ###
 .vscode/
 
@@ -41,4 +57,5 @@ target/
 
 # Java application logs
 *.log
-
+# document
+Advanced_Student_Management_System_Assignment.pdf

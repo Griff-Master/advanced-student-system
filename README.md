@@ -47,7 +47,7 @@ on the classpath.
 
 Run the `Main` class:
 
-`com.studentMangement.Main`
+`com.studentmanagement.Main`
 
 The application starts with the main menu and continues running until
 the user selects **Save and Exit**.
@@ -75,7 +75,7 @@ The application follows a layered architecture:
 
 ### Entity Layer
 
-Package: `com.studentMangement.entity`
+Package: `com.studentmanagement.entity`
 
 Contains the main domain objects:
 
@@ -86,7 +86,7 @@ The `Student` class also protects its own data through validation.
 
 ### Repository Layer
 
-Package: `com.studentMangement.repository`
+Package: `com.studentmanagement.repository`
 
 Responsible for storing and retrieving students.
 
@@ -102,7 +102,7 @@ Main components:
 
 ### Service Layer
 
-Package: `com.studentMangement.service`
+Package: `com.studentmanagement.service`
 
 `StudentService` contains the main business logic, including:
 
@@ -118,7 +118,7 @@ Package: `com.studentMangement.service`
 
 ### Exception Layer
 
-Package: `com.studentMangement.exception`
+Package: `com.studentmanagement.exception`
 
 Contains custom exceptions such as:
 
@@ -131,7 +131,7 @@ Contains custom exceptions such as:
 
 ### Utility Layer
 
-Package: `com.studentMangement.util`
+Package: `com.studentmanagement.util`
 
 Contains reusable utilities including:
 
@@ -293,6 +293,20 @@ JUnit 5 tests, `Comparable`, reusable `Comparator` definitions, and
 Java collections and streams to implement the required functionality.
 
 ---
+### MySQL Configuration
+
+This application uses MySQL to store student records. Before running the application, create the `student_management` database and the required `students` table.
+
+Configure the following environment variables:
+
+- DB_URL — JDBC URL for the database. Defaults to `jdbc:mysql://localhost:3306/student_management`.
+- DB_USERNAME — MySQL username. Defaults to `root`.
+- DB_PASSWORD — MySQL password. Required.
+
+For testing, create a separate `student_management_test` database and configure the JUnit run configuration to use it.
+
+
+
 
 ### 10.  Screenshot Demonstration
 
