@@ -1,13 +1,15 @@
 package com.studentmanagement;
 
+import com.studentmanagement.config.DatabaseConnection;
 import com.studentmanagement.entity.Student;
 import com.studentmanagement.entity.StudentStatus;
 import com.studentmanagement.exception.*;
-import com.studentmanagement.repository.JsonStudentRepository;
 import com.studentmanagement.repository.MySqlStudentRepository;
 import com.studentmanagement.repository.Repository;
 import com.studentmanagement.service.StudentService;
 import com.studentmanagement.util.ConsoleUtils;
+
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,19 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
+        // Check the database connection before starting the application.
+        try (var connection = DatabaseConnection.getConnection()) {
+            if (!connection.isValid(2)) {
+                System.err.println("Database connection is not valid.");
+                return;
+            }
+
+            System.out.println("Database connection successful.");
+
+        } catch (SQLException e) {
+            System.err.println("Unable to connect to MySQL. Check your server and database configuration.");
+            return;
+        }
         Repository<Student, Integer> repository =
                 new MySqlStudentRepository();
         StudentService service =
