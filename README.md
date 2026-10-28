@@ -292,19 +292,34 @@ The system uses Java 17+, Gson 2.10.1, JSON persistence, custom exceptions,
 JUnit 5 tests, `Comparable`, reusable `Comparator` definitions, and
 Java collections and streams to implement the required functionality.
 
----
 ### MySQL Configuration
 
-This application uses MySQL to store student records. Before running the application, create the `student_management` database and the required `students` table.
+This application uses MySQL to store student records.
 
-Configure the following environment variables:
+#### Prerequisites
 
-- DB_URL — JDBC URL for the database. Defaults to `jdbc:mysql://localhost:3306/student_management`.
-- DB_USERNAME — MySQL username. Defaults to `root`.
-- DB_PASSWORD — MySQL password. Required.
+* Install MySQL Server.
+* Create the `student_management` database and the required `students` table by executing `database/schema.sql`.
 
-For testing, create a separate `student_management_test` database and configure the JUnit run configuration to use it.
+#### Database Connection
 
+The application supports MySQL accounts with or without passwords. Configure the following environment variables if necessary:
+
+* `DB_URL` — JDBC URL for the database. Defaults to `jdbc:mysql://localhost:3306/student_management`.
+* `DB_USERNAME` — MySQL username. Defaults to `root`.
+* `DB_PASSWORD` — MySQL password. Set this variable if your account requires a password. If your account has no password, leave it unset.
+
+The application uses an empty password when `DB_PASSWORD` is not configured. Successful connections depend on your MySQL account and authentication settings.
+
+#### Running Tests
+
+Create a separate `student_management_test` database before running the tests. Configure your test environment to use:
+
+`DB_URL=jdbc:mysql://localhost:3306/student_management_test`
+
+Ensure `DB_USERNAME` and `DB_PASSWORD` match your MySQL configuration.
+
+**Important:** Always use the test database when running tests to avoid accidentally modifying or deleting records in your main database.
 
 
 
